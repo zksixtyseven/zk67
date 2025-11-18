@@ -1,8 +1,5 @@
 # zK-67 TERMINAL
 
-![Uploading Untitled design (2).png…]()
-
-
 
 A Matrix-inspired cryptographic terminal that generates mathematical equations equaling 67, verified through zero-knowledge proofs (zk-SNARKs).
 
