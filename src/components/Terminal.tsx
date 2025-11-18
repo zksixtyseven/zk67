@@ -226,34 +226,33 @@ export const Terminal = () => {
     }
   };
   return <div className="min-h-screen p-4 md:p-8 relative">
+      <div className="absolute top-4 right-4 md:top-8 md:right-8 flex items-center gap-4 z-10">
+        <a
+          href="https://x.com/ZK67_SOL"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono text-sm"
+        >
+          <Twitter className="h-4 w-4" />
+          <span>X / Twitter</span>
+        </a>
+        <a
+          href="https://github.com/zksixtyseven/zk67"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono text-sm"
+        >
+          <Github className="h-4 w-4" />
+          <span>Github</span>
+        </a>
+      </div>
+      
       <div className="max-w-4xl mx-auto space-y-4">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
-            <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
-            <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
-            <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-30 ml-4" />
-          </div>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://x.com/ZK67_SOL"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono text-sm"
-            >
-              <Twitter className="h-4 w-4" />
-              <span>X / Twitter</span>
-            </a>
-            <a
-              href="https://github.com/zksixtyseven/zk67"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono text-sm"
-            >
-              <Github className="h-4 w-4" />
-              <span>Github</span>
-            </a>
-          </div>
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
+          <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
+          <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
+          <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-30 ml-4" />
         </div>
 
         <Card className="bg-card border-primary/30 terminal-glow">
