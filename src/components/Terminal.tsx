@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { generateProof, verifyProof, evaluateEquation, ZKProof } from '@/utils/zkProof';
-import { Loader2, CheckCircle2, XCircle, Sparkles, Twitter } from 'lucide-react';
+import { Loader2, CheckCircle2, XCircle, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import terminalLogo from '@/assets/zk-67-terminal-logo.png';
 interface Message {
@@ -200,16 +200,6 @@ export const Terminal = () => {
     }
   };
   return <div className="min-h-screen p-4 md:p-8 relative">
-      <a 
-        href="https://x.com/zksixtyseven" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="fixed top-4 right-4 md:top-8 md:right-8 z-50 flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 border border-primary/30 rounded-md transition-colors group"
-      >
-        <Twitter className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
-        <span className="text-primary font-mono text-sm">@zksixtyseven</span>
-      </a>
-
       <div className="max-w-4xl mx-auto space-y-4">
         <div className="flex items-center gap-3 mb-6">
           <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
