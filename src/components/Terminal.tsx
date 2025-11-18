@@ -6,6 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { generateProof, verifyProof, evaluateEquation, ZKProof } from '@/utils/zkProof';
 import { Loader2, CheckCircle2, XCircle, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import terminalLogo from '@/assets/zk-67-terminal-logo.png';
 interface Message {
   type: 'system' | 'equation' | 'proof' | 'verification';
   content: string;
@@ -164,7 +165,7 @@ export const Terminal = () => {
           <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
           <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
           <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
-          <h1 className="text-2xl font-bold text-primary ml-4">zK-67 TERMINAL</h1>
+          <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-12 ml-4" />
         </div>
 
         <Card className="bg-card border-primary/30 terminal-glow">
