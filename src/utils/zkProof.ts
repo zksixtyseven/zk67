@@ -77,17 +77,46 @@ const hashString = (str: string): string => {
 // Evaluate equation to verify it equals 67
 export const evaluateEquation = (equation: string): number => {
   try {
-    // Clean the equation
-    const cleanEq = equation.replace(/[^0-9+\-*/().^]/g, '');
+    // Convert word operators to symbols first
+    let processed = equation.toLowerCase()
+      .replace(/\btimes\b/g, '*')
+      .replace(/\bplus\b/g, '+')
+      .replace(/\bminus\b/g, '-')
+      .replace(/\bdivided by\b/g, '/')
+      .replace(/\bx\b/g, '*');
+    
+    // Clean the equation - keep only valid math characters
+    const cleanEq = processed.replace(/[^0-9+\-*/().^!]/g, '');
+    
+    // Handle factorials
+    let withFactorials = cleanEq;
+    const factorialRegex = /(\d+)!/g;
+    let match;
+    while ((match = factorialRegex.exec(cleanEq)) !== null) {
+      const num = parseInt(match[1]);
+      let factorial = 1;
+      for (let i = 2; i <= num; i++) {
+        factorial *= i;
+      }
+      withFactorials = withFactorials.replace(match[0], factorial.toString());
+    }
     
     // Handle exponents
-    const withExponents = cleanEq.replace(/(\d+)\^(\d+)/g, (_, base, exp) => {
+    const withExponents = withFactorials.replace(/(\d+)\^(\d+)/g, (_, base, exp) => {
       return Math.pow(parseInt(base), parseInt(exp)).toString();
     });
     
-    // Evaluate using Function constructor (safe in this context as we control input)
-    const result = new Function('return ' + withExponents)();
-    return Math.round(result);
+    console.log('Original equation:', equation);
+    console.log('Cleaned equation:', withExponents);
+    
+    // Evaluate using Function constructor - JavaScript naturally follows order of operations
+    // PEMDAS: Parentheses, Exponents (handled above), Multiplication/Division (left-to-right), Addition/Subtraction (left-to-right)
+    const result = new Function('return (' + withExponents + ')')();
+    const rounded = Math.round(result);
+    
+    console.log('Evaluated result:', rounded);
+    
+    return rounded;
   } catch (error) {
     console.error('Error evaluating equation:', error);
     return 0;
