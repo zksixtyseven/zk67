@@ -165,7 +165,7 @@ export const Terminal = () => {
           <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
           <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
           <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
-          <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-12 ml-4" />
+          <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-30 ml-4" />
         </div>
 
         <Card className="bg-card border-primary/30 terminal-glow">
