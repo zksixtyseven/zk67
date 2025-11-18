@@ -227,14 +227,14 @@ export const Terminal = () => {
   };
   return <div className="min-h-screen p-4 md:p-8 relative">
       <div className="max-w-4xl mx-auto space-y-4">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-3">
             <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
             <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
             <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
             <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-30 ml-4" />
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 ml-16">
             <a
               href="https://x.com/ZK67_SOL"
               target="_blank"
