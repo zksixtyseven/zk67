@@ -1,0 +1,4 @@
+project_id = "kaumlfemolamqtcjjgst"
+
+[functions.generate-equation]
+verify_jwt = false
