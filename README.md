@@ -1,73 +1,155 @@
-# Welcome to your Lovable project
+# zK-67 TERMINAL
 
-## Project info
+A Matrix-inspired cryptographic terminal that generates mathematical equations equaling 67, verified through zero-knowledge proofs (zk-SNARKs).
 
-**URL**: https://lovable.dev/projects/08423ea5-4c06-4f9c-b4cb-6bc9378aba7e
+![Matrix Style Terminal](https://img.shields.io/badge/style-Matrix-00FF00?style=for-the-badge)
+![zk-SNARKs](https://img.shields.io/badge/crypto-zk--SNARKs-brightgreen?style=for-the-badge)
+![AI Powered](https://img.shields.io/badge/AI-OpenAI-412991?style=for-the-badge)
 
-## How can I edit this code?
+## 🎯 What is zK-67?
 
-There are several ways of editing your application.
+zK-67 Terminal is a unique web application that combines cryptography, AI, and cyberpunk aesthetics. It generates mathematical equations that always equal 67, then proves their correctness using zk-SNARK (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge) technology - all wrapped in a nostalgic Matrix-style green neon interface.
 
-**Use Lovable**
+## ✨ Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/08423ea5-4c06-4f9c-b4cb-6bc9378aba7e) and start prompting.
+- **🤖 AI Equation Generation**: Powered by OpenAI's LLM to generate creative equations that equal 67
+- **🔐 zk-SNARK Verification**: Cryptographic proof system that verifies equations without revealing computation details
+- **🎨 Matrix Aesthetic**: Full Matrix movie theme with:
+  - Neon green glowing terminal interface
+  - Animated digital rain background (featuring only 6s and 7s)
+  - Cyberpunk visual effects and animations
+- **🔊 Sound Effects**: Celebratory audio on successful proof verification
+- **🖼️ AI Meme Generation**: Creates unique, funny Matrix-themed memes of "67" on each successful verification
+- **📝 Custom Equations**: Enter your own equations to verify if they equal 67
+- **⚡ Real-time Processing**: Instant equation evaluation and proof generation
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tech Stack
 
-**Use your preferred IDE**
+### Frontend
+- **React** with TypeScript
+- **Vite** for blazing-fast builds
+- **Tailwind CSS** for styling
+- **Shadcn/ui** component library
+- **Lucide React** for icons
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Backend (Lovable Cloud)
+- **Supabase Edge Functions** for serverless computing
+- **OpenAI API** for equation generation
+- **Lovable AI** (Gemini Flash Image) for meme generation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Cryptography
+- **snarkjs** for zk-SNARK proof generation and verification
 
-Follow these steps:
+## 🔬 How It Works
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. **Equation Generation**: 
+   - User types "generate" or enters a custom equation
+   - If generating, OpenAI LLM creates a mathematical expression that equals 67
+   - Equation is evaluated using standard mathematical order of operations
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. **zk-SNARK Proof**:
+   - A zero-knowledge proof is generated demonstrating the equation equals 67
+   - The proof cryptographically verifies correctness without revealing computation steps
+   - Implements pi_a, pi_b, pi_c components of the proof system
 
-# Step 3: Install the necessary dependencies.
-npm i
+3. **Verification**:
+   - Proof is verified against the expected result (67)
+   - On success: plays audio effect and generates a unique AI meme
+   - All verification happens with cryptographic certainty
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+4. **Meme Generation**:
+   - Uses Lovable AI with Gemini Flash Image model
+   - Creates Matrix-styled, humorous images featuring "67"
+   - Different variation each time for maximum shareability
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ or Bun
+- Lovable Cloud account (for backend features)
+- OpenAI API key (for equation generation)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/zk-67-terminal.git
+cd zk-67-terminal
 ```
 
-**Edit a file directly in GitHub**
+2. Install dependencies:
+```bash
+npm install
+# or
+bun install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Set up environment variables:
+- The project uses Lovable Cloud which auto-configures Supabase
+- Add `OPENAI_API_KEY` secret through the Lovable Cloud interface
 
-**Use GitHub Codespaces**
+4. Run the development server:
+```bash
+npm run dev
+# or
+bun dev
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+5. Open [http://localhost:5173](http://localhost:5173) in your browser
 
-## What technologies are used for this project?
+## 🎮 Usage
 
-This project is built with:
+1. **Generate Equations**: Type `generate` in the terminal and press EXECUTE
+2. **Custom Equations**: Enter your own mathematical expression (e.g., `60 + 7`, `10 * 6 + 7`)
+3. **Watch the Magic**: See the equation evaluated, proof generated, verified, and meme created
+4. **Share**: Follow [@zksixtyseven](https://x.com/zksixtyseven) on X for updates
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Example Equations
+- `60 + 7`
+- `10 * 6 + 7`
+- `100 - 33`
+- `134 / 2`
+- `64 + 3`
 
-## How can I deploy this project?
+## 🎨 Design Philosophy
 
-Simply open [Lovable](https://lovable.dev/projects/08423ea5-4c06-4f9c-b4cb-6bc9378aba7e) and click on Share -> Publish.
+The interface embraces the iconic Matrix aesthetic with:
+- **Color Scheme**: Neon green (#00FF00) on dark backgrounds
+- **Typography**: Monospace fonts for that terminal feel
+- **Animation**: Flowing code rain, pulsing indicators, glowing effects
+- **Easter Eggs**: Only 6s and 7s appear in the Matrix rain background
 
-## Can I connect a custom domain to my Lovable project?
+## 🔒 Zero-Knowledge Proofs
 
-Yes, you can!
+zk-SNARKs allow the system to prove that an equation equals 67 without revealing the computational steps. This demonstrates:
+- **Privacy**: Computation details remain hidden
+- **Efficiency**: Proofs are "succinct" - small and fast to verify
+- **Security**: Mathematical guarantee of correctness
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🤝 Contributing
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
+- Share your generated memes
+
+## 📜 License
+
+MIT License - feel free to use this project for learning and experimentation
+
+## 🌟 Connect
+
+- **X/Twitter**: [@zksixtyseven](https://x.com/zksixtyseven)
+- **Built with**: [Lovable](https://lovable.dev) - AI-powered full-stack development
+
+## 🙏 Acknowledgments
+
+- Inspired by The Matrix movie franchise
+- zk-SNARK technology and the snarkjs library
+- OpenAI for equation generation capabilities
+- The cyberpunk and cryptography communities
+
+---
+
+**Remember**: There is no spoon. There is only 67. 🟢
