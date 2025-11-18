@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { generateProof, verifyProof, evaluateEquation, ZKProof } from '@/utils/zkProof';
-import { Loader2, CheckCircle2, XCircle, Sparkles } from 'lucide-react';
+import { Loader2, CheckCircle2, XCircle, Sparkles, Twitter } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import terminalLogo from '@/assets/zk-67-terminal-logo.png';
 interface Message {
@@ -161,11 +161,22 @@ export const Terminal = () => {
   };
   return <div className="min-h-screen p-4 md:p-8">
       <div className="max-w-4xl mx-auto space-y-4">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
-          <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
-          <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
-          <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-30 ml-4" />
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
+            <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
+            <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
+            <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-30 ml-4" />
+          </div>
+          <a 
+            href="https://x.com/zksixtyseven" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 border border-primary/30 rounded-md transition-colors group"
+          >
+            <Twitter className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
+            <span className="text-primary font-mono text-sm">@zksixtyseven</span>
+          </a>
         </div>
 
         <Card className="bg-card border-primary/30 terminal-glow">
