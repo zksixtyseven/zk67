@@ -3,6 +3,7 @@
 ![Uploading Untitled design (2).png…]()
 
 
+
 A Matrix-inspired cryptographic terminal that generates mathematical equations equaling 67, verified through zero-knowledge proofs (zk-SNARKs).
 
 ![Matrix Style Terminal](https://img.shields.io/badge/style-Matrix-00FF00?style=for-the-badge)
