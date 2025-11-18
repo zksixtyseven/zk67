@@ -177,7 +177,7 @@ export const Terminal = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
+    <div className="min-h-screen p-4 md:p-8">
       <div className="max-w-4xl mx-auto space-y-4">
         <div className="flex items-center gap-3 mb-6">
           <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
