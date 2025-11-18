@@ -94,29 +94,31 @@ const Verifier = () => {
           Back to Terminal
         </Button>
 
-        <div className="mb-6">
-          <div className="flex items-center gap-3 mb-3">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
             <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
             <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
             <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
             <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-30 ml-4" />
           </div>
-          <div className="flex items-center gap-3 ml-16">
+          <div className="flex items-center gap-4">
             <a
               href="https://x.com/ZK67_SOL"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 transition-colors"
+              className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono text-sm"
             >
-              <Twitter className="h-5 w-5" />
+              <Twitter className="h-4 w-4" />
+              <span>X / Twitter</span>
             </a>
             <a
               href="https://github.com/zksixtyseven/zk67"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 transition-colors"
+              className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono text-sm"
             >
-              <Github className="h-5 w-5" />
+              <Github className="h-4 w-4" />
+              <span>Github</span>
             </a>
           </div>
         </div>
