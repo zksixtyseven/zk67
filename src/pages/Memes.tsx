@@ -82,13 +82,13 @@ const Memes = () => {
 
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-8">
-            <h1 className="text-4xl font-bold text-primary font-mono terminal-glow">
-              MEMES GALLERY
-            </h1>
-            <div className="flex gap-4">
-              <NavLink to="/">Terminal</NavLink>
-              <NavLink to="/verifier">Verifier</NavLink>
+            <div className="flex items-center gap-4">
+              <NavLink to="/">← Back to Terminal</NavLink>
+              <h1 className="text-4xl font-bold text-primary font-mono terminal-glow">
+                MEMES GALLERY
+              </h1>
             </div>
+            <NavLink to="/verifier">Verifier</NavLink>
           </div>
 
           <Card className="bg-card border-primary/30 terminal-glow p-6">
