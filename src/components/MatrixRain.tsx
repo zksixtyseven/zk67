@@ -10,17 +10,22 @@ export const MatrixRain = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
     const numbers = ['6', '7'];
     const fontSize = 16;
-    const columns = canvas.width / fontSize;
-    const drops: number[] = [];
+    let columns = 0;
+    let drops: number[] = [];
+    let animationId: number;
 
-    for (let i = 0; i < columns; i++) {
-      drops[i] = Math.random() * -100;
-    }
+    const initRain = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      columns = Math.floor(canvas.width / fontSize);
+      drops = [];
+      
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * -100;
+      }
+    };
 
     const draw = () => {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
@@ -38,19 +43,21 @@ export const MatrixRain = () => {
         }
         drops[i]++;
       }
+      
+      animationId = requestAnimationFrame(draw);
     };
 
-    const interval = setInterval(draw, 33);
+    initRain();
+    draw();
 
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      initRain();
     };
 
     window.addEventListener('resize', handleResize);
 
     return () => {
-      clearInterval(interval);
+      cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
