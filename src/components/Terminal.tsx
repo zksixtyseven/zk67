@@ -119,6 +119,13 @@ export const Terminal = () => {
       isGenerating: true
     });
     const isValid = await verifyProof(proof, 67);
+    
+    // Play sound effect if verification is successful
+    if (isValid) {
+      const audio = new Audio('/67-sound.mp3');
+      audio.play().catch(err => console.error('Error playing sound:', err));
+    }
+    
     addMessage({
       type: 'verification',
       content: isValid ? 'Proof VERIFIED ✓' : 'Proof INVALID ✗',
