@@ -123,7 +123,7 @@ export const Terminal = () => {
       isGenerating: true
     });
     const isValid = await verifyProof(proof, 67);
-    
+
     // Play sound effect if verification is successful
     if (isValid) {
       try {
@@ -134,7 +134,6 @@ export const Terminal = () => {
         console.log('Audio error:', err);
       }
     }
-    
     addMessage({
       type: 'verification',
       content: isValid ? 'Proof VERIFIED ✓' : 'Proof INVALID ✗',
@@ -150,24 +149,24 @@ export const Terminal = () => {
         timestamp: new Date(),
         isGenerating: true
       });
-
       try {
-        const { data: memeData, error: memeError } = await supabase.functions.invoke('generate-meme', {
+        const {
+          data: memeData,
+          error: memeError
+        } = await supabase.functions.invoke('generate-meme', {
           body: {}
         });
-
         if (memeError) throw memeError;
-
         if (memeData.imageUrl) {
           // Save meme to database for gallery
-          const { error: insertError } = await supabase
-            .from('memes')
-            .insert({ image_url: memeData.imageUrl });
-          
+          const {
+            error: insertError
+          } = await supabase.from('memes').insert({
+            image_url: memeData.imageUrl
+          });
           if (insertError) {
             console.error('Failed to save meme to database:', insertError);
           }
-
           addMessage({
             type: 'meme',
             content: 'Victory Meme Generated!',
@@ -198,16 +197,14 @@ export const Terminal = () => {
     } else if (field === 'all') {
       textToCopy = JSON.stringify(proof, null, 2);
     }
-    
     navigator.clipboard.writeText(textToCopy);
     setCopiedProof(field);
     setTimeout(() => setCopiedProof(null), 2000);
     toast({
       title: 'Copied!',
-      description: 'Proof data copied to clipboard',
+      description: 'Proof data copied to clipboard'
     });
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -243,21 +240,11 @@ export const Terminal = () => {
   };
   return <div className="min-h-screen p-4 md:p-8 relative">
       <div className="absolute top-4 right-4 md:top-8 md:right-8 flex items-center gap-4 z-10">
-        <a
-          href="https://x.com/ZK67_SOL"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono text-sm"
-        >
+        <a href="https://x.com/ZK67_SOL" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono text-sm">
           <Twitter className="h-4 w-4" />
           <span>X / Twitter</span>
         </a>
-        <a
-          href="https://github.com/zksixtyseven/zk67"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono text-sm"
-        >
+        <a href="https://github.com/zksixtyseven/zk67" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono text-sm">
           <Github className="h-4 w-4" />
           <span>Github</span>
         </a>
@@ -293,78 +280,33 @@ export const Terminal = () => {
                         <Sparkles className="h-4 w-4" />
                         <p className="font-mono text-sm font-bold">ZK-SNARK PROOF</p>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => copyProofData(msg.proof!, 'all')}
-                        className="h-8 px-2"
-                      >
-                        {copiedProof === 'all' ? (
-                          <CheckCheck className="h-4 w-4 text-secondary" />
-                        ) : (
-                          <Copy className="h-4 w-4" />
-                        )}
+                      <Button variant="ghost" size="sm" onClick={() => copyProofData(msg.proof!, 'all')} className="h-8 px-2">
+                        {copiedProof === 'all' ? <CheckCheck className="h-4 w-4 text-secondary" /> : <Copy className="h-4 w-4" />}
                       </Button>
                     </div>
                     <div className="font-mono text-xs text-muted-foreground space-y-1">
                       <div className="flex items-center justify-between">
                         <p>π_a: {msg.proof.pi_a[0].substring(0, 16)}...</p>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => copyProofData(msg.proof!, 'pi_a')}
-                          className="h-6 px-1"
-                        >
-                          {copiedProof === 'pi_a' ? (
-                            <CheckCheck className="h-3 w-3 text-secondary" />
-                          ) : (
-                            <Copy className="h-3 w-3" />
-                          )}
+                        <Button variant="ghost" size="sm" onClick={() => copyProofData(msg.proof!, 'pi_a')} className="h-6 px-1">
+                          {copiedProof === 'pi_a' ? <CheckCheck className="h-3 w-3 text-secondary" /> : <Copy className="h-3 w-3" />}
                         </Button>
                       </div>
                       <div className="flex items-center justify-between">
                         <p>π_b: {msg.proof.pi_b[0][0].substring(0, 16)}...</p>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => copyProofData(msg.proof!, 'pi_b')}
-                          className="h-6 px-1"
-                        >
-                          {copiedProof === 'pi_b' ? (
-                            <CheckCheck className="h-3 w-3 text-secondary" />
-                          ) : (
-                            <Copy className="h-3 w-3" />
-                          )}
+                        <Button variant="ghost" size="sm" onClick={() => copyProofData(msg.proof!, 'pi_b')} className="h-6 px-1">
+                          {copiedProof === 'pi_b' ? <CheckCheck className="h-3 w-3 text-secondary" /> : <Copy className="h-3 w-3" />}
                         </Button>
                       </div>
                       <div className="flex items-center justify-between">
                         <p>π_c: {msg.proof.pi_c[0].substring(0, 16)}...</p>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => copyProofData(msg.proof!, 'pi_c')}
-                          className="h-6 px-1"
-                        >
-                          {copiedProof === 'pi_c' ? (
-                            <CheckCheck className="h-3 w-3 text-secondary" />
-                          ) : (
-                            <Copy className="h-3 w-3" />
-                          )}
+                        <Button variant="ghost" size="sm" onClick={() => copyProofData(msg.proof!, 'pi_c')} className="h-6 px-1">
+                          {copiedProof === 'pi_c' ? <CheckCheck className="h-3 w-3 text-secondary" /> : <Copy className="h-3 w-3" />}
                         </Button>
                       </div>
                       <div className="flex items-center justify-between">
                         <p>Public: [{msg.proof.publicSignals.join(', ')}]</p>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => copyProofData(msg.proof!, 'public')}
-                          className="h-6 px-1"
-                        >
-                          {copiedProof === 'public' ? (
-                            <CheckCheck className="h-3 w-3 text-secondary" />
-                          ) : (
-                            <Copy className="h-3 w-3" />
-                          )}
+                        <Button variant="ghost" size="sm" onClick={() => copyProofData(msg.proof!, 'public')} className="h-6 px-1">
+                          {copiedProof === 'public' ? <CheckCheck className="h-3 w-3 text-secondary" /> : <Copy className="h-3 w-3" />}
                         </Button>
                       </div>
                     </div>
@@ -382,11 +324,7 @@ export const Terminal = () => {
                       <Sparkles className="h-4 w-4" />
                       <p className="font-mono text-sm font-bold">{msg.content}</p>
                     </div>
-                    <img 
-                      src={msg.imageUrl} 
-                      alt="Victory Meme" 
-                      className="w-full rounded border border-primary/20 terminal-glow"
-                    />
+                    <img src={msg.imageUrl} alt="Victory Meme" className="w-full rounded border border-primary/20 terminal-glow" />
                   </div>}
               </div>)}
             <div ref={messagesEndRef} />
@@ -404,20 +342,10 @@ export const Terminal = () => {
           <p>Commands: "generate" | Custom equation</p>
           <p>All equations must equal 67 to generate valid proofs</p>
           <div className="flex items-center justify-center gap-4">
-            <Button
-              variant="link"
-              onClick={() => navigate('/verifier')}
-              className="text-primary hover:text-primary/80 font-mono text-xs"
-            >
+            <Button variant="link" onClick={() => navigate('/verifier')} className="text-primary hover:text-primary/80 font-mono text-xs">
               → Open Proof Verifier
             </Button>
-            <Button
-              variant="link"
-              onClick={() => navigate('/memes')}
-              className="text-primary hover:text-primary/80 font-mono text-xs"
-            >
-              → View Memes Gallery
-            </Button>
+            <Button variant="link" onClick={() => navigate('/memes')} className="text-primary hover:text-primary/80 font-mono text-xs">→ View 67 Gallery</Button>
           </div>
         </div>
       </div>
