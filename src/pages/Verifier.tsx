@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { verifyProof, ZKProof } from '@/utils/zkProof';
-import { CheckCircle2, XCircle, ArrowLeft } from 'lucide-react';
+import { CheckCircle2, XCircle, ArrowLeft, Twitter, Github } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import terminalLogo from '@/assets/zk-67-terminal-logo.png';
@@ -94,11 +94,31 @@ const Verifier = () => {
           Back to Terminal
         </Button>
 
-        <div className="flex items-center gap-3 mb-6">
-          <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
-          <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
-          <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
-          <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-30 ml-4" />
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
+            <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
+            <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
+            <img src={terminalLogo} alt="zK-67 TERMINAL" className="h-30 ml-4" />
+          </div>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://x.com/ZK67_SOL"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 transition-colors"
+            >
+              <Twitter className="h-5 w-5" />
+            </a>
+            <a
+              href="https://github.com/zksixtyseven/zk67"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 transition-colors"
+            >
+              <Github className="h-5 w-5" />
+            </a>
+          </div>
         </div>
 
         <Card className="bg-card border-primary/30 terminal-glow p-6">
