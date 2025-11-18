@@ -184,7 +184,7 @@ export const Terminal = () => {
           <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
           <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
           <h1 className="text-2xl font-bold text-primary ml-4">
-            ZK-SNARK EQUATION TERMINAL
+            zK-67 Terminal
           </h1>
         </div>
 
