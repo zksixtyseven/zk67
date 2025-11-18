@@ -8,12 +8,13 @@ import { Loader2, CheckCircle2, XCircle, Sparkles, Twitter } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast';
 import terminalLogo from '@/assets/zk-67-terminal-logo.png';
 interface Message {
-  type: 'system' | 'equation' | 'proof' | 'verification';
+  type: 'system' | 'equation' | 'proof' | 'verification' | 'meme';
   content: string;
   timestamp: Date;
   proof?: ZKProof;
   verified?: boolean;
   isGenerating?: boolean;
+  imageUrl?: string;
 }
 export const Terminal = () => {
   const [messages, setMessages] = useState<Message[]>([{
@@ -132,6 +133,38 @@ export const Terminal = () => {
       timestamp: new Date(),
       verified: isValid
     });
+
+    // Generate meme image if verification is successful
+    if (isValid) {
+      addMessage({
+        type: 'system',
+        content: '> Generating victory meme...',
+        timestamp: new Date(),
+        isGenerating: true
+      });
+
+      try {
+        const { data: memeData, error: memeError } = await supabase.functions.invoke('generate-meme', {
+          body: {}
+        });
+
+        if (memeError) throw memeError;
+
+        addMessage({
+          type: 'meme',
+          content: 'Victory Meme Generated!',
+          timestamp: new Date(),
+          imageUrl: memeData.imageUrl
+        });
+      } catch (error) {
+        console.error('Error generating meme:', error);
+        addMessage({
+          type: 'system',
+          content: `✗ Failed to generate meme: ${error.message}`,
+          timestamp: new Date()
+        });
+      }
+    }
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -219,6 +252,18 @@ export const Terminal = () => {
                     <p className={`font-mono text-lg font-bold ${msg.verified ? 'text-secondary' : 'text-destructive'}`}>
                       {msg.content}
                     </p>
+                  </div>}
+
+                {msg.type === 'meme' && msg.imageUrl && <div className="p-4 bg-card rounded border border-primary/30 space-y-2">
+                    <div className="flex items-center gap-2 text-primary">
+                      <Sparkles className="h-4 w-4" />
+                      <p className="font-mono text-sm font-bold">{msg.content}</p>
+                    </div>
+                    <img 
+                      src={msg.imageUrl} 
+                      alt="Victory Meme" 
+                      className="w-full rounded border border-primary/20 terminal-glow"
+                    />
                   </div>}
               </div>)}
             <div ref={messagesEndRef} />
