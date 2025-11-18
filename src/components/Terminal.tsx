@@ -126,8 +126,13 @@ export const Terminal = () => {
     
     // Play sound effect if verification is successful
     if (isValid) {
-      const audio = new Audio('/67-sound.mp3');
-      audio.play().catch(err => console.error('Error playing sound:', err));
+      try {
+        const audio = new Audio('/67-sound.mp3');
+        audio.volume = 0.5;
+        audio.play().catch(err => console.log('Audio playback failed:', err));
+      } catch (err) {
+        console.log('Audio error:', err);
+      }
     }
     
     addMessage({
@@ -153,12 +158,23 @@ export const Terminal = () => {
 
         if (memeError) throw memeError;
 
-        addMessage({
-          type: 'meme',
-          content: 'Victory Meme Generated!',
-          timestamp: new Date(),
-          imageUrl: memeData.imageUrl
-        });
+        if (memeData.imageUrl) {
+          // Save meme to database for gallery
+          const { error: insertError } = await supabase
+            .from('memes')
+            .insert({ image_url: memeData.imageUrl });
+          
+          if (insertError) {
+            console.error('Failed to save meme to database:', insertError);
+          }
+
+          addMessage({
+            type: 'meme',
+            content: 'Victory Meme Generated!',
+            timestamp: new Date(),
+            imageUrl: memeData.imageUrl
+          });
+        }
       } catch (error) {
         console.error('Error generating meme:', error);
         addMessage({
@@ -248,7 +264,7 @@ export const Terminal = () => {
       </div>
       
       <div className="max-w-4xl mx-auto space-y-4">
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center justify-center gap-3 mb-6">
           <div className="h-3 w-3 rounded-full bg-destructive animate-pulse" />
           <div className="h-3 w-3 rounded-full bg-primary animate-pulse" />
           <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
@@ -387,13 +403,22 @@ export const Terminal = () => {
         <div className="text-center text-muted-foreground text-xs font-mono space-y-1">
           <p>Commands: "generate" | Custom equation</p>
           <p>All equations must equal 67 to generate valid proofs</p>
-          <Button
-            variant="link"
-            onClick={() => navigate('/verifier')}
-            className="text-primary hover:text-primary/80 font-mono text-xs"
-          >
-            → Open Proof Verifier
-          </Button>
+          <div className="flex items-center justify-center gap-4">
+            <Button
+              variant="link"
+              onClick={() => navigate('/verifier')}
+              className="text-primary hover:text-primary/80 font-mono text-xs"
+            >
+              → Open Proof Verifier
+            </Button>
+            <Button
+              variant="link"
+              onClick={() => navigate('/memes')}
+              className="text-primary hover:text-primary/80 font-mono text-xs"
+            >
+              → View Memes Gallery
+            </Button>
+          </div>
         </div>
       </div>
     </div>;
