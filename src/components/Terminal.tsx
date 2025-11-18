@@ -4,8 +4,9 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { generateProof, verifyProof, evaluateEquation, ZKProof } from '@/utils/zkProof';
-import { Loader2, CheckCircle2, XCircle, Sparkles } from 'lucide-react';
+import { Loader2, CheckCircle2, XCircle, Sparkles, Copy, CheckCheck } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 import terminalLogo from '@/assets/zk-67-terminal-logo.png';
 interface Message {
   type: 'system' | 'equation' | 'proof' | 'verification' | 'meme';
@@ -23,7 +24,7 @@ export const Terminal = () => {
     timestamp: new Date()
   }, {
     type: 'system',
-    content: '> Connected to Lovable AI',
+    content: '> Connected to 67 AI',
     timestamp: new Date()
   }, {
     type: 'system',
@@ -32,7 +33,9 @@ export const Terminal = () => {
   }]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [copiedProof, setCopiedProof] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const {
     toast
   } = useToast();
@@ -166,6 +169,29 @@ export const Terminal = () => {
       }
     }
   };
+  const copyProofData = (proof: ZKProof, field: string) => {
+    let textToCopy = '';
+    if (field === 'pi_a') {
+      textToCopy = JSON.stringify(proof.pi_a);
+    } else if (field === 'pi_b') {
+      textToCopy = JSON.stringify(proof.pi_b);
+    } else if (field === 'pi_c') {
+      textToCopy = JSON.stringify(proof.pi_c);
+    } else if (field === 'public') {
+      textToCopy = JSON.stringify(proof.publicSignals);
+    } else if (field === 'all') {
+      textToCopy = JSON.stringify(proof, null, 2);
+    }
+    
+    navigator.clipboard.writeText(textToCopy);
+    setCopiedProof(field);
+    setTimeout(() => setCopiedProof(null), 2000);
+    toast({
+      title: 'Copied!',
+      description: 'Proof data copied to clipboard',
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -225,15 +251,85 @@ export const Terminal = () => {
                   </div>}
 
                 {msg.type === 'proof' && msg.proof && <div className="p-4 bg-card rounded border border-accent/30 space-y-2">
-                    <div className="flex items-center gap-2 text-accent">
-                      <Sparkles className="h-4 w-4" />
-                      <p className="font-mono text-sm font-bold">ZK-SNARK PROOF</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-accent">
+                        <Sparkles className="h-4 w-4" />
+                        <p className="font-mono text-sm font-bold">ZK-SNARK PROOF</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyProofData(msg.proof!, 'all')}
+                        className="h-8 px-2"
+                      >
+                        {copiedProof === 'all' ? (
+                          <CheckCheck className="h-4 w-4 text-secondary" />
+                        ) : (
+                          <Copy className="h-4 w-4" />
+                        )}
+                      </Button>
                     </div>
                     <div className="font-mono text-xs text-muted-foreground space-y-1">
-                      <p>π_a: {msg.proof.pi_a[0].substring(0, 16)}...</p>
-                      <p>π_b: {msg.proof.pi_b[0][0].substring(0, 16)}...</p>
-                      <p>π_c: {msg.proof.pi_c[0].substring(0, 16)}...</p>
-                      <p>Public: [{msg.proof.publicSignals.join(', ')}]</p>
+                      <div className="flex items-center justify-between">
+                        <p>π_a: {msg.proof.pi_a[0].substring(0, 16)}...</p>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => copyProofData(msg.proof!, 'pi_a')}
+                          className="h-6 px-1"
+                        >
+                          {copiedProof === 'pi_a' ? (
+                            <CheckCheck className="h-3 w-3 text-secondary" />
+                          ) : (
+                            <Copy className="h-3 w-3" />
+                          )}
+                        </Button>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <p>π_b: {msg.proof.pi_b[0][0].substring(0, 16)}...</p>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => copyProofData(msg.proof!, 'pi_b')}
+                          className="h-6 px-1"
+                        >
+                          {copiedProof === 'pi_b' ? (
+                            <CheckCheck className="h-3 w-3 text-secondary" />
+                          ) : (
+                            <Copy className="h-3 w-3" />
+                          )}
+                        </Button>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <p>π_c: {msg.proof.pi_c[0].substring(0, 16)}...</p>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => copyProofData(msg.proof!, 'pi_c')}
+                          className="h-6 px-1"
+                        >
+                          {copiedProof === 'pi_c' ? (
+                            <CheckCheck className="h-3 w-3 text-secondary" />
+                          ) : (
+                            <Copy className="h-3 w-3" />
+                          )}
+                        </Button>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <p>Public: [{msg.proof.publicSignals.join(', ')}]</p>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => copyProofData(msg.proof!, 'public')}
+                          className="h-6 px-1"
+                        >
+                          {copiedProof === 'public' ? (
+                            <CheckCheck className="h-3 w-3 text-secondary" />
+                          ) : (
+                            <Copy className="h-3 w-3" />
+                          )}
+                        </Button>
+                      </div>
                     </div>
                   </div>}
 
@@ -270,6 +366,13 @@ export const Terminal = () => {
         <div className="text-center text-muted-foreground text-xs font-mono space-y-1">
           <p>Commands: "generate" | Custom equation</p>
           <p>All equations must equal 67 to generate valid proofs</p>
+          <Button
+            variant="link"
+            onClick={() => navigate('/verifier')}
+            className="text-primary hover:text-primary/80 font-mono text-xs"
+          >
+            → Open Proof Verifier
+          </Button>
         </div>
       </div>
     </div>;
