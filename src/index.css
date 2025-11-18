@@ -8,41 +8,41 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Terminal-inspired dark theme */
-    --background: 220 13% 8%;
-    --foreground: 180 100% 85%;
+    /* Matrix-inspired neon green theme */
+    --background: 120 10% 5%;
+    --foreground: 130 80% 70%;
 
-    --card: 220 13% 10%;
-    --card-foreground: 180 100% 85%;
+    --card: 120 15% 8%;
+    --card-foreground: 130 80% 70%;
 
-    --popover: 220 13% 10%;
-    --popover-foreground: 180 100% 85%;
+    --popover: 120 15% 8%;
+    --popover-foreground: 130 80% 70%;
 
-    --primary: 180 100% 50%;
-    --primary-foreground: 220 13% 8%;
+    --primary: 130 100% 50%;
+    --primary-foreground: 120 10% 5%;
 
-    --secondary: 155 100% 45%;
-    --secondary-foreground: 220 13% 8%;
+    --secondary: 130 70% 40%;
+    --secondary-foreground: 120 10% 5%;
 
-    --muted: 220 13% 15%;
-    --muted-foreground: 180 20% 50%;
+    --muted: 130 30% 15%;
+    --muted-foreground: 130 40% 40%;
 
-    --accent: 180 100% 50%;
-    --accent-foreground: 220 13% 8%;
+    --accent: 130 100% 50%;
+    --accent-foreground: 120 10% 5%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 220 13% 8%;
+    --destructive-foreground: 120 10% 5%;
 
-    --border: 180 30% 20%;
-    --input: 180 30% 15%;
-    --ring: 180 100% 50%;
+    --border: 130 50% 25%;
+    --input: 130 40% 12%;
+    --ring: 130 100% 50%;
 
     --radius: 0.25rem;
 
-    /* Terminal effects */
-    --terminal-glow: 0 0 10px hsl(180 100% 50% / 0.5);
-    --success-glow: 0 0 10px hsl(155 100% 45% / 0.5);
-    --shadow-terminal: 0 4px 20px hsl(180 100% 50% / 0.15);
+    /* Matrix neon effects */
+    --terminal-glow: 0 0 15px hsl(130 100% 50% / 0.6);
+    --success-glow: 0 0 15px hsl(130 100% 50% / 0.6);
+    --shadow-terminal: 0 4px 30px hsl(130 100% 50% / 0.25);
 
     /* Animation */
     --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
